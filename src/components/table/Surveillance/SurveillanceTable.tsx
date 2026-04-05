@@ -100,7 +100,7 @@ const SurveillanceTable = () => {
     <div className="mt-9">
       <h2 className="text-xl font-semibold mb-5">Surveillance Table</h2>
       <div>
-        <form className="flex gap-5">
+        <div className="flex gap-5">
           <div className="flex-1">
             <SearchInput
               placeholder="Search cameras or locations..."
@@ -121,7 +121,7 @@ const SurveillanceTable = () => {
             />
             <ResetButton onClick={handleResetFilter} />
           </div>
-        </form>
+        </div>
         <div className="bg-white rounded-lg overflow-hidden mt-5 mb-14">
           <BaseTable
             columns={surveillanceColumns}
