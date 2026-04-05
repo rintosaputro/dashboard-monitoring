@@ -1,7 +1,12 @@
-import "./App.css";
+import { PageRowProvider } from "./app/PageRowContext";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
-  return <h1 className="text-red-600">Dashboard</h1>;
+  return (
+    <PageRowProvider>
+      <AppRoutes />
+    </PageRowProvider>
+  );
 }
 
 export default App;
