@@ -1,13 +1,12 @@
 import generatePageSizes from "../../utils/generatePageSizes";
-import { usePageRowContext } from "../../app/PageRowContext";
 
 interface PageRowProps {
   dataLength: number;
+  pageRow: number;
+  setPageRow: (v: number) => void;
 }
 
-const PageRow = ({ dataLength }: PageRowProps) => {
-  const { pageRow, setPageRow } = usePageRowContext();
-
+const PageRow = ({ dataLength, pageRow, setPageRow }: PageRowProps) => {
   const pageSizes = generatePageSizes(dataLength);
 
   return (

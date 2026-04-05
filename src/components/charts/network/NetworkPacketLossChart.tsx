@@ -1,4 +1,4 @@
-import type { NetworkType } from "../../../types/network.type";
+import { useNetworkStore } from "../../../store/NetworkStore";
 import { Bar } from "../BaseChart";
 
 const options = {
@@ -21,7 +21,9 @@ const options = {
   },
 };
 
-const NetworkPacketLossChart = ({ data }: { data: NetworkType[] }) => {
+const NetworkPacketLossChart = () => {
+  const { data } = useNetworkStore();
+
   const chartData = {
     labels: data.map((d) => d.name),
     datasets: [

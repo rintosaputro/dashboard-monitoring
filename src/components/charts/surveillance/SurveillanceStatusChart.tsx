@@ -1,4 +1,4 @@
-import type { SurveillanceType } from "../../../types/surveillance.type";
+import { useSurveillanceStore } from "../../../store/SurveillanceStore";
 import BadgePie from "../BadgePie";
 import { Pie } from "../BaseChart";
 
@@ -13,7 +13,9 @@ const options = {
   },
 };
 
-const SurveillanceStatusChart = ({ data }: { data: SurveillanceType[] }) => {
+const SurveillanceStatusChart = () => {
+  const { data } = useSurveillanceStore();
+
   const active = data.filter((d) => d.status === "active").length;
   const inactive = data.filter((d) => d.status === "inactive").length;
 

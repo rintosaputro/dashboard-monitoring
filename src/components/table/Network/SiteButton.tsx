@@ -1,9 +1,9 @@
 import { FaLongArrowAltUp, FaLongArrowAltDown } from "react-icons/fa";
-import { useSortContext } from "../../../app/SortContext";
 import { cn } from "../../../utils/classname";
+import { useNetworkStore } from "../../../store/NetworkStore";
 
 const SiteButton = () => {
-  const { sort, setSort } = useSortContext();
+  const { sort, setSort } = useNetworkStore();
 
   const handleClick = () => {
     if (sort === "asc") {

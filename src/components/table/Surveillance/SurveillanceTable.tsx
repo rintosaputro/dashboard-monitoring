@@ -1,4 +1,3 @@
-import { useState } from "react";
 import type { SurveillanceType } from "../../../types/surveillance.type";
 import SearchInput from "../../form/SearchInput";
 import type { Column } from "../BaseTable";
@@ -6,8 +5,10 @@ import { BaseTable } from "../BaseTable";
 import { FaCircleCheck } from "react-icons/fa6";
 import { IoMdCloseCircle } from "react-icons/io";
 import PageRow from "../../form/PageRow";
-import { usePageRowContext } from "../../../app/PageRowContext";
 import Select from "../../form/Select";
+import { useSurveillanceStore } from "../../../store/SurveillanceStore";
+import ResetButton from "../../button/ResetButton";
+import { useEffect } from "react";
 
 const surveillanceColumns: Column<SurveillanceType>[] = [
   {
@@ -60,13 +61,16 @@ const aiFilterOptions = [
   { label: "Non AI", value: "disabled" },
 ];
 
-const SurveillanceTable = ({ data }: { data: SurveillanceType[] }) => {
-  const [search, setSearch] = useState("");
-  const [aiFilter, setAiFilter] = useState<"all" | "enabled" | "disabled">(
-    "all",
-  );
-
-  const { pageRow } = usePageRowContext();
+const SurveillanceTable = () => {
+  const {
+    data,
+    search,
+    setSearch,
+    aiFilter,
+    setAiFilter,
+    pageRow,
+    setPageRow,
+  } = useSurveillanceStore();
 
   const filteredData = data.filter((item) => {
     const searchCondition =
@@ -81,6 +85,16 @@ const SurveillanceTable = ({ data }: { data: SurveillanceType[] }) => {
     }
     return searchCondition;
   });
+
+  const handleResetFilter = () => {
+    setSearch("");
+    setAiFilter("all");
+    setPageRow(10);
+  };
+
+  useEffect(() => {
+    setPageRow(10);
+  }, [search, aiFilter]);
 
   return (
     <div className="mt-9">
@@ -100,7 +114,12 @@ const SurveillanceTable = ({ data }: { data: SurveillanceType[] }) => {
               value={aiFilter}
               onChange={(v) => setAiFilter(v as any)}
             />
-            <PageRow dataLength={filteredData.length} />
+            <PageRow
+              dataLength={filteredData.length}
+              pageRow={pageRow}
+              setPageRow={setPageRow}
+            />
+            <ResetButton onClick={handleResetFilter} />
           </div>
         </form>
         <div className="bg-white rounded-lg overflow-hidden mt-5 mb-14">

@@ -1,11 +1,10 @@
-import { useState } from "react";
 import type { NetworkType } from "../../../types/network.type";
 import SearchInput from "../../form/SearchInput";
 import { BaseTable, type Column } from "../BaseTable";
 import PageRow from "../../form/PageRow";
-import { usePageRowContext } from "../../../app/PageRowContext";
 import SiteButton from "./SiteButton";
-import { useSortContext } from "../../../app/SortContext";
+import { useNetworkStore } from "../../../store/NetworkStore";
+import ResetButton from "../../button/ResetButton";
 
 const networkColumns: Column<NetworkType>[] = [
   {
@@ -43,11 +42,9 @@ const networkColumns: Column<NetworkType>[] = [
   },
 ];
 
-const NetworkTable = ({ data }: { data: NetworkType[] }) => {
-  const [search, setSearch] = useState("");
-
-  const { pageRow, setPageRow } = usePageRowContext();
-  const { sort, setSort } = useSortContext();
+const NetworkTable = () => {
+  const { data, search, setSearch, pageRow, setPageRow, sort, setSort } =
+    useNetworkStore();
 
   const filteredData = data
     .filter((item) => {
@@ -86,15 +83,12 @@ const NetworkTable = ({ data }: { data: NetworkType[] }) => {
             />
           </div>
           <div className="flex gap-1.5">
-            <PageRow dataLength={filteredData.length} />
-            <button
-              title="Reset Filter"
-              type="button"
-              onClick={handleResetFilter}
-              className="bg-primary text-white rounded-md px-5 cursor-pointer hover:opacity-50"
-            >
-              Reset
-            </button>
+            <PageRow
+              dataLength={filteredData.length}
+              pageRow={pageRow}
+              setPageRow={setPageRow}
+            />
+            <ResetButton onClick={handleResetFilter} />
           </div>
         </form>
         <div className="bg-white rounded-lg overflow-hidden mt-5 mb-14">

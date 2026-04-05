@@ -1,4 +1,4 @@
-import type { NetworkType } from "../../../types/network.type";
+import { useNetworkStore } from "../../../store/NetworkStore";
 import { Line } from "../BaseChart";
 
 const options = {
@@ -14,7 +14,9 @@ const options = {
   },
 };
 
-const NetworkMultiLineChart = ({ data }: { data: NetworkType[] }) => {
+const NetworkMultiLineChart = () => {
+  const { data } = useNetworkStore();
+
   const chartData = {
     labels: data.map((d) => d.name),
     datasets: [

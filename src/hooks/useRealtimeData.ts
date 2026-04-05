@@ -1,19 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export const useRealtimeData = <T>(
   initialData: T[],
   updater: (data: T[]) => T[],
+  setStore: (data: any) => void,
   interval = 2000,
 ) => {
-  const [data, setData] = useState<T[]>(initialData);
-
   useEffect(() => {
+    setStore(initialData);
+
     const timer = setInterval(() => {
-      setData((prev) => updater(prev));
+      setStore((prev: T[]) => updater(prev));
     }, interval);
 
     return () => clearInterval(timer);
-  }, [updater, interval]);
-
-  return data;
+  }, [initialData, updater, interval, setStore]);
 };

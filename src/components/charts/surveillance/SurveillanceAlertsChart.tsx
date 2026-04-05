@@ -1,4 +1,4 @@
-import type { SurveillanceType } from "../../../types/surveillance.type";
+import { useSurveillanceStore } from "../../../store/SurveillanceStore";
 import { Bar } from "../BaseChart";
 
 const options = {
@@ -12,7 +12,9 @@ const options = {
   },
 };
 
-const SurveillanceAlertsChart = ({ data }: { data: SurveillanceType[] }) => {
+const SurveillanceAlertsChart = () => {
+  const { data } = useSurveillanceStore();
+
   const chartData = {
     labels: data.map((d) => `cmr ${d.name.split(" ")[1]}`),
     datasets: [
