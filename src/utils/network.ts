@@ -1,14 +1,4 @@
-import networkData from "../dataset/network_dataset.json";
 import type { NetworkType } from "../types/network.type";
-
-export function getInitialLatencySeries() {
-  const devices = networkData.slice(0, 3);
-
-  return devices.map((device) => ({
-    name: device.name,
-    data: Array.from({ length: 10 }, () => device.latency),
-  }));
-}
 
 export const getNetworkSummary = (data: NetworkType[]) => {
   const total = data.length;
@@ -36,9 +26,9 @@ export const simulateNetwork = (data: NetworkType[]) => {
             : "up"
           : item.status,
 
-      bandwidth: Math.max(0, Math.min(1000, newBandwidth)),
-      latency: Math.max(1, Math.min(200, newLatency)),
-      packetLoss: Math.max(0, Math.min(5, newPacketLoss)),
+      bandwidth: Math.round(Math.max(0, Math.min(1000, newBandwidth))),
+      latency: Math.round(Math.max(1, Math.min(200, newLatency))),
+      packetLoss: Number(Math.max(0, Math.min(5, newPacketLoss)).toFixed(2)),
 
       lastUpdate: new Date().toISOString(),
     };

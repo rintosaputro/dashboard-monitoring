@@ -1,5 +1,5 @@
-import type { SurveillanceType } from "../../types/surveillance.type";
-import { Bar } from "./BaseChart";
+import type { SurveillanceType } from "../../../types/surveillance.type";
+import { Bar } from "../BaseChart";
 
 const options = {
   plugins: {
@@ -20,6 +20,7 @@ const SurveillanceAlertsChart = ({ data }: { data: SurveillanceType[] }) => {
         label: "Alerts",
         data: data.map((d) => d.alerts),
         backgroundColor: "#3b82f6",
+        borderRadius: 8,
       },
     ],
   };

@@ -1,5 +1,5 @@
-import type { NetworkType } from "../../types/network.type";
-import { Line } from "./BaseChart";
+import type { NetworkType } from "../../../types/network.type";
+import { Line } from "../BaseChart";
 
 const options = {
   plugins: {

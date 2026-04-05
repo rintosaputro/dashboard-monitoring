@@ -3,8 +3,8 @@ import { getSurveillanceSummary } from "../../utils/surveillance";
 import surveillanceInitialData from "../../dataset/surveillance_dataset.json";
 import { simulateSurveillance } from "../../utils/surveillance";
 import { useRealtimeData } from "../../hooks/useRealtimeData";
-import SurveillanceStatusChart from "../../components/charts/SurveillanceStatusChart";
-import SurveillanceAlertsChart from "../../components/charts/SurveillanceAlertsChart";
+import SurveillanceStatusChart from "../../components/charts/surveillance/SurveillanceStatusChart";
+import SurveillanceAlertsChart from "../../components/charts/surveillance/SurveillanceAlertsChart";
 import SurveillanceTable from "../../components/table/Surveillance/SurveillanceTable";
 
 const SurveillancePage = () => {

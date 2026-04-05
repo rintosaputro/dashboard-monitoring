@@ -1,5 +1,5 @@
-import type { NetworkType } from "../../types/network.type";
-import { Bar } from "./BaseChart";
+import type { NetworkType } from "../../../types/network.type";
+import { Bar } from "../BaseChart";
 
 const options = {
   scales: {

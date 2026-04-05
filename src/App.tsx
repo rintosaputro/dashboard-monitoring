@@ -1,10 +1,13 @@
 import { PageRowProvider } from "./app/PageRowContext";
+import { SortProvider } from "./app/SortContext";
 import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   return (
     <PageRowProvider>
-      <AppRoutes />
+      <SortProvider>
+        <AppRoutes />
+      </SortProvider>
     </PageRowProvider>
   );
 }

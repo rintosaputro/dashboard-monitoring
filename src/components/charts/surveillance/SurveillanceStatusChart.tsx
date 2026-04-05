@@ -1,6 +1,6 @@
-import type { SurveillanceType } from "../../types/surveillance.type";
-import BadgePie from "./BadgePie";
-import { Pie } from "./BaseChart";
+import type { SurveillanceType } from "../../../types/surveillance.type";
+import BadgePie from "../BadgePie";
+import { Pie } from "../BaseChart";
 
 const options = {
   plugins: {

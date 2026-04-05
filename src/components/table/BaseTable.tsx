@@ -1,6 +1,6 @@
 export type Column<T> = {
   key: keyof T;
-  label: string;
+  label: React.ReactNode;
   render?: (value: any, row: T) => React.ReactNode;
 };
 

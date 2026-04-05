@@ -17,12 +17,11 @@ export const PageRowProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const usePageRowContext = () => {
   const context = useContext(PageRowContext);
 
   if (!context) {
-    throw new Error("useTheme must be used within ThemeProvider");
+    throw new Error("usePageRowContext must be used within PageRowProvider");
   }
 
   const { pageRow, setPageRow } = context;
